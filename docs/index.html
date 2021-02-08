@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Plata Exchange</title>
-  
+  <title>Etheros</title>
+
   <!-- Bootstrap -->
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -29,30 +28,30 @@
 
 
 
-    
+
 
     <div class="animation-area" id ="animation-area" style="filter: blur(0px); filter: brightness(1);">
- 
 
 
-      
+
+
 
       <body>
 
-        
-        
-        
+
+
+
           <div class="banner-text">
-              
+
                 <ul>
-                  
-                  <title>Plata Exchange Marketplace</title>
+
+                  <title>Etheros Data Market</title>
                   <li>Home</li>
                   <li>Login</li>
                   <li>About</li>
-                  
-      
-      
+
+
+
                 </ul>
 
                 <ul2>
@@ -64,11 +63,12 @@
                   <p3 id="accountBalance" class="welcome pull-left"></p3>
 
                 </ul2>
-                
-      
-      
+
+
+
+
               </div>
-          
+
 
 
       <ul class="box-area">
@@ -83,97 +83,92 @@
         <li>
       </ul>
 
-      
+
       <account class="row">
         <div class="col-lg-12">
-          
+
         </div>
       </account>
 
 
-      
-        
+
+
 
         <nav class="navbar navbar-default navbar-fixed-bottom">
           <div class="navbar-inner navbar-content-center text-center">
             <p class="text-muted" credit><a href="https://sensorweb.engr.uga.edu/">SensorWeb Research Laboratory</a> - &copy; 2020 - <a href="https://sensorweb.engr.uga.edu/index.php/people/">William Rittmeyer</a> and <a href="https://sensorweb.engr.uga.edu/index.php/people/">Soumya Pal</a></p>
           </div>
         </nav>
-      
+
       <div class="container">
-        
+
       </div>
 
 
+
+
       <div class="col-1" id="article-list">
+        <div class="panel-title">
+        <button class="btn btn-info btn-lg pull-right myButton" data-toggle="modal" data-target="#sellArticle" onclick="App.blurBackground();" >Add a
+          Sensor</button>
+
+        </div>
       <div class="panel-heading">
-        <br/>
-      <pre> Item           Description                                                      Price(ETH)       Seller</pre>
+        <br/><br/>
+      <pre> Sensor name                      Description                                                                                        Seller</pre>
       <br/>
       </div>
         <div id="articlesRow" class="row">
         Loading Items for Sale...
         <!-- ARTICLES LOAD HERE -->
 
-        </div>    
+        </div>
       </div>
+
+
+      <div class="panel-title">
 
       <div class ="table1-header">
         Current Marketplace
       </div>
 
-      <div class ="table2-header">
-        Events
-      </div>
 
-      
-
-     
-
-
-
-
-
-      <div class="col-2" id="article-list2">
-
-
-      <div class="row panel panel-default">
-        <div class="panel-heading clearfix">
-          <div class="panel-title">
-            <button class="btn btn-info btn-lg pull-left btn-event btn-unsubscribe" onclick="App.stopListeningToEvents(); return false;">Unsubscribe</button>
-            <button class="btn btn-info btn-lg pull-left btn-event btn-subscribe" style="display: none" onclick="App.listenToEvents(); return false;">Subscribe</button>
-            <button class="btn btn-info btn-lg pull-left btn-show-events" data-toggle="collapse" data-target="#events" aria-expanded="false"
-                    aria-controls="events">Show Events</button>
-            <button class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#sellArticle" onclick="App.blurBackground();" >Sell an
-              article</button>
-          </div>
-          <br/>
-        </div>
-        <ul id="events" class="collapse list-group"></ul>
-      </div>
-
-      
-      </div>
 
        <div class="col-3" id="article-list2">
-      
+
       </div>
 
-      
-        
+
+
 
 
 
         <div id="articleTemplate" style="display: none;">
           <div class="row-lg-12">
             <div class="panel panel-default panel-article">
-              
+
               <div class="panel-body">
                 <pre class="panel-title" style ="display: inline-block;"></pre>
                 <div class="article-description" style ="display: inline-block;"></div>
-                <div class="article-price" style ="display: inline-block;"></div>
+                <div class="article-tag" style ="display: inline-block;"></div>
+                <!--div class="article-price" style ="display: inline-block;"></div-->
                 <div class="article-seller" style ="display: inline-block;"></div>
-                <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button>
+                <div class="article-testid" id="testid" style ="display: inline-block;" hidden='true'></div>
+                <!--input class="article-testid" type="text" id="testid" style ="display: inline-block;" hidden='true'-->
+                <!--button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button>
+                <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="influxtest();">Test influx</button-->
+                  <!--label for="start" style ="display: inline-block;">Start</label><br>
+                  <input class="article-start" id='start' style ="display: inline-block;"><br>
+                  <label for="end" style ="display: inline-block;">End</label><br>
+                  <input class="article-end" type="text" id="end" style ="display: inline-block;" onchange="App.endTime();">
+                  <br><br>
+                  <div class="view-price" style ="display: inline-block;"></div>
+                  <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button-->
+                  <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy myButton1" onclick="App.selectRange(event); App.blurBackground(); return false;">Select range</button>
+                  <!--form action="/inf-action" method='post'-->
+                      <p><br></p>
+                      <!--input type="submit" value="Submit"-->
+
                 <br/>
             </div>
           </div>
@@ -182,23 +177,23 @@
 
       </div>
 
-        
-      
 
-    
+
+
+
 
       <img src="ethereum1.png" class="ethereum-logo" />
       <img src= "IPFS.png"class="ipfs-logo"/>
-      
 
-      
 
-   
-      
+
+
+
+
     </div>
+</div>
 
 
-  
 
   <!-- Modal form to sell an article -->
   <div class="modal fade" id="sellArticle" role="dialog">
@@ -207,8 +202,11 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" onclick="App.unblurBackground();" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Sell your article</h4>
+          <button type="button" onclick="App.unblurBackground();" class="close" data-dismiss="modal" id="closed-modal">&#x274E;</button>
+
+    				<!--i class="icon fa-home" id="img"></i-->
+          <h2 class="modal-title">Add a Sensor</h2>
+          <br/>
         </div>
         <div class="modal-body">
 
@@ -216,38 +214,48 @@
             <div class="col-lg-12">
               <form>
                 <div class="form-group">
-                  <label for="article_name">Article name</label>
-                  <input type="text" class="form-control" id="article_name" placeholder="Enter the name of your article">
+                  <label for="article_name">Sensor name</label>
+                  <input type="text" class="form-control" id="article_name" placeholder="Enter the name of sensor">
+                  <br/><br/>
                 </div>
-                <div class="form-group">
+                <!--div class="form-group">
                   <label for="price">Price in ETH</label>
                   <input type="number" class="form-control" id="article_price" placeholder="1" pattern="[0-9]+([\.,][0-9]+)?"
                     step="0.01">
-                </div>
+                </div-->
                 <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea type="text" class="form-control vresize" id="article_description" placeholder="Describe your article"
-                    maxlength="255"></textarea>
+                  <textarea type="text" class="form-control vresize" id="article_description" placeholder="Describe your sensor"
+                    maxlength="555" rows='3' cols='22'></textarea>
+                    <br/><br/>
                 </div>
-                <input type ="file" id="input" onchange='uploadFile();' />
-                <label type="text" id="hashvalue" hidden="hidden"></label>
+
+                <div class="form-group">
+                  <label for="article_name">Tag</label>
+                  <input type="text" class="form-control" id="article_tag" placeholder="Enter the tag for sensor">
+                  <br/><br/>
+                </div>
+
+
+                <!--input type ="file" id="input" onchange='uploadFile();' /-->
+                <!--label type="text" id="hashvalue" hidden="hidden"></label>
                 <p id="ipfslinktitle"></p>
-                <p id="ipfslink"><a href=''></a></p>
+                <p id="ipfslink"><a href=''></a></p-->
               </form>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.sellArticle(); submitFile(); return false;">Submit</button>
-          <button type="button" class="btn" data-dismiss="modal" onclick="App.unblurBackground();" >Close</button>
-          
+          <button type="button" class="btn btn-primary btn-success myButton" data-dismiss="modal" onclick="App.sellArticle(); return false;">Submit</button>
+          <!--button type="button" class="btn" data-dismiss="modal" onclick="App.unblurBackground();" >Close</button-->
+
         </div>
       </div>
 
     </div>
   </div>
 
-    
+
   <div class="modal-loading" id ="modal-loading" hidden="true">
       <h1> Please wait as the transaction is processed</h1>
 
@@ -266,32 +274,96 @@
 
     </div>
 
-      <button type="button" class="modal-close" onclick="App.CloseWindow();">&times;</button>
+      <button type="button" class="modal-close" onclick="App.CloseWindow();">&#x274E;</button>
     </div>
-  </div>
 
 
   <div class="modal-submission" id ="modal-submission" hidden="true">
     <div id= "modal-sale" >
       <h1> Your file has successfully been put up for sale</h1>
-          <button type="button" class="modal-close" onclick="App.CloseSubmission();">&times;</button>
+
+          <button type="button" class="modal-close" onclick="App.CloseSubmission();">&#x274E;</button>
     </div>
   </div>
-  
-  <div class="modal-receipt" id ="modal-receipt" hidden="true">
+
+  <div class="modal-time" id ="modal-time" hidden="true">
+    <div id= "modal-select" >
+      <!--h3 id ="purchaselink"></h3-->
+      <!--form-->
+        <p><br></p></h3>
+        <h2>Select time range</h2><br>
+        <form id="timetest">
+        <label for="timeStart">Start Time</label><br>
+        <input class="trans-start timeText" name='timeStart' placeholder= 'Start Time' id='timeStart'><br><br>
+        <label for="timeEnd">End Time</label><br>
+        <input class="trans-end timeText" name='timeEnd' id="timeEnd" placeholder= 'End Time' onchange="App.endTime();"><br><br>
+        <button class="myButton" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button>
+      </form>
+
+        Price:
+        <div class="time-price" style ="display: inline-block;"></div></h3>
+        ETH
+        <br><br>
+        <!--input type="submit" value="Submit"-->
+        <!--button class="myButton" type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button-->
+        <!--a class="myButton" href="https://www.google.com" id="buttontest" disabled>View Data (Client side)</a-->
+<!--button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.testfn(); return false;">Buy</button-->
+          <!--button type="button" class="modal-close" onclick="App.CloseReceipt();">&times;</button-->
+        <!--/form-->
+
+        </div>
+        <div>
+        <form action="/fileUpload" method="post" enctype="multipart/form-data">
+            <label for="file">Choose file to upload</label>
+            <input type="file" id="file" name="file" disabled>
+          </br>
+              <input type='submit' id="filepost" class="myButton">
+          </form>
+        <button type="button" class="modal-close" onclick="App.CloseTimeWindow();">&#x274E;</button>
+    </div>
+
+  <div class="modal-time1" id ="modal-time1" hidden="true">
+    <div id= "modal-select1" >
+      <h1> Thank you for your purchase!</h1>
+        <p><br></p>
+      <!--h3 id ="purchaselink"></h3-->
+      <form action="/sendTime" method="POST">
+        <input class="receiptStart timeText" name='receiptStart1' id='receiptStart1'><br>
+        <input class="receiptEnd timeText" name='receiptEnd1' id="receiptEnd1"><br><br>
+        <input type='submit' class="myButton">
+        <!--input type="submit" class="myButton" value="Link to view Data (Broken atm; server side)"-->
+      </form>
+      <!--a class="myButton" href="https://www.google.com" id="linktest">View Data (Grafana)</a-->
+          <!--button type="button" class="modal-close" onclick="App.CloseReceipt();">&times;</button-->
+        </div>
+    </div>
+
+    <div id="postResultDiv">
+      </div>
+  <!--div class="modal-receipt" id ="modal-receipt" hidden="true">
     <div id= "modal-purchase" >
       <h1> Thank you for your purchase!</h1>
-      <h3 id ="purchaselink"></h2>
+        <p><br></p>
+      <h3 id ="purchaselink"></h3>
+      <form action="/test" method="post">
+        <label for="timeStart">Start</label><br>
+        <input class="receiptStart timeText" type="text" name='testStart' id='receiptStart'><br>
+        <label for="timeEnd">End</label><br>
+        <input class="receiptEnd timeText" type="text" name='testEnd' id="receiptEnd"><br><br>
+        <input type="submit" class="myButton" value="Link to view Data (Broken atm; server side)">
+      </form>
+      <a class="myButton" href="https://www.google.com" id="linktest">View Data (Client side)</a>
           <button type="button" class="modal-close" onclick="App.CloseReceipt();">&times;</button>
-    </div>
-  </div>
+        </div>
+    </div-->
+  <!--/div-->
 
   <div class="modal-error" id ="modal-error" hidden="true">
       <h1> Whoops! Looks like something went wrong.</h1>
           <button type="button" class="modal-close" onclick="App.CloseError();">&times;</button>
   </div>
 
- 
+
 
 
 
@@ -301,9 +373,12 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/web3.min.js"></script>
   <script src="js/truffle-contract.js"></script>
+  <script src="js/infltest.js"></script>
+  <!--script src="/js/getrequest.js"></script>
+ <script src="/js/postrequest.js"></script-->
+
   <script src="js/app.js"></script>
   <script src="js/bundle.js"></script>
     <script type="text/javascript"></script>
-    </script>
 </body>
 </html>

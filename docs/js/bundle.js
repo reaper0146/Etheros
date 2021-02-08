@@ -201,9 +201,18 @@ uploadFile = () => {
       if (err) {
           return console.log(err)
       }
+      console.log(1);
       $('#hashvalue').text(hash);
+      console.log(2);
       $('#ipfslinktitle').text('Your IPFS Link');
+      console.log(3);
       $('#ipfslink').text('https://ipfs.infura.io/ipfs/' + hash);
+      console.log(4);
+     
+      console.log(5);
+
+
+      
       
       });
   };

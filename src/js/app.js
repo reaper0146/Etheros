@@ -89,7 +89,23 @@ App = {
         $('.btn-show-events').show();
     },
 
+  handleImageUpload: async(event) => {
+  const files = event.target.files
+  const formData = new FormData()
+  formData.append('myFile', files[0])
 
+  fetch('/saveImage', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.path)
+  })
+  .catch(error => {
+    console.error(error)
+  })
+},
 
     stopListeningToEvents: async () => {
         if(App.logSellArticleEventListener != null) {
@@ -137,8 +153,8 @@ App = {
             const transactionReceipt = await marketInstance.sellArticle(
                 _name,
                 _description,
-                _price,
                 _tag,
+                _price,
                 {from: App.account, gas: 5000000}
             ).on("transactionHash", hash => {
                 console.log("transaction hash", hash);
@@ -154,6 +170,8 @@ App = {
             console.log("transaction receipt" + transactionReceipt);
             $('#modal-loading').attr('hidden', true);
             $('#modal-submission').attr('hidden', false);
+
+
             App.blurBackground();
 
 
@@ -200,8 +218,49 @@ App = {
       temp= time3/10000000*/
     },
 
+    ajaxPost: async()=>{
+
+      // PREPARE FORM DATA
+      var formData = {
+        timeStart : $("#timeStart").val(),
+        timeEnd :  $("#timeEnd").val()
+      }
+
+      console.log(formData)
+
+      // DO POST
+      $.ajax({
+      type : "POST",
+      contentType : "application/json",
+      url : window.location + "sendTime",
+      data : JSON.stringify(formData),
+      dataType : 'json',
+      success : function(timetest) {console.log("Success!");
+      //  $("#postResultDiv").html("<p>" +
+        //  "Post Successfully! <br>" +
+          //"--->" + JSON.stringify(timetest)+ "</p>");
+      },
+      error : function(e) {
+        //alert("Error!")
+        console.log("ERROR: ", e);
+      }
+    });
+
+      // Reset FormData after Posting
+    //  App.resetData();
+
+    },
+
+    resetData: async() => {
+      $("#timeStart").val("");
+      $("#endStart").val("");
+    },
+
     buyArticle: async () => {
         event.preventDefault();
+
+        document.getElementById('timeStart').disabled = true;
+        document.getElementById('timeEnd').disabled = true;
         //$('#modal-time').attr('hidden', false);
         App.blurBackground();
 
@@ -216,32 +275,40 @@ App = {
         //console.log(test1)
 
         var element1 = document.getElementById('timeStart').value;
+        //console.log(typeof(element1))
         var element2 = document.getElementById('timeEnd').value;
-        document.getElementById('timeStart').disabled = true;
-        document.getElementById('timeEnd').disabled = true;
-        var element3 = document.getElementById('linktest')
+        //console.log(typeof(element2))
+
+        //var element3 = document.getElementById('linktest')
         time1= new Date(element1);
         time2= new Date(element2);
         time3= time2-time1;
         temp= time3/10000000
         const articlePrice = temp.toString()
-        const _price = window.web3.utils.toWei(articlePrice, "ether");
+        const _price = window.web3.utils.toWei(articlePrice, "ether")
 
         var startstamp=App.toTimestamp(time1)
         var endstamp=App.toTimestamp(time2)
-        console.log(startstamp)
-        console.log(endstamp)
+
+        App.ajaxPost();
+
+
+        //httpRequest = new XMLHttpRequest();
+        //httpRequest.onreadystatechange = "Problem with request";
+        //httpRequest.open('POST', 'sendTime1');
+        //httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      //  httpRequest.send('Time= ' + encodeURIComponent(startstamp) + 'T= '+ encodeURIComponent(endstamp));
+        //httpRequest.send('endTime= ' + encodeURIComponent(endstamp));
+        //console.log(startstamp)
+        //console.log(endstamp)
         //http://localhost:3000/d/5_8OLaVGk/home?editPanel=2&orgId=1&from=1599883200000&to=1600228799000
-        temp = "http://localhost:3000/d/5_8OLaVGk/home?orgId=1&from="+startstamp+"&to="+endstamp //toTimestamp('09/06/2020 17:31:30')
+        //temp = "http://localhost:3000/d/5_8OLaVGk/home?orgId=1&from="+startstamp+"&to="+endstamp //toTimestamp('09/06/2020 17:31:30')
 
-        element3.href=temp
-        console.log(element1)
-        console.log(element2)
-
-        document.getElementById('receiptStart').value=element1;
-        document.getElementById('receiptEnd').value=element2;
-        document.getElementById('receiptStart').disabled=true;
-        document.getElementById('receiptEnd').disabled=true;
+        //element3.href=tem
+      //  document.getElementById('receiptStart1').value=element1;
+      //  document.getElementById('receiptEnd1').value=element2;
+      //  document.getElementById('receiptStart1').disabled=true;
+      //  document.getElementById('receiptEnd1').disabled=true;
 
         try {
             const marketInstance = await App.contracts.Market.deployed();
@@ -255,17 +322,19 @@ App = {
                 }
             ).on("transactionHash", hash => {
                 console.log("transaction hash", hash);
-
+                document.getElementById("file").disabled = false;
+                document.getElementById("filepost").disabled = false;
                 var number = 0;
                 marketInstance.LogSellArticle({fromBlock: "0"}).on("data", async function(event) {
                 number++;
+
               //  console.log(number);
                 //console.log(_articleId);
                 if (number == _articleId){
                   console.log(event.returnValues);
-                  $('#modal-time').attr('hidden', true);
-                    $('#modal-loading').attr('hidden', false);
-                    App.blurBackground();
+                //  $('#modal-time').attr('hidden', true);
+                  //  $('#modal-loading').attr('hidden', false);
+                  //  App.blurBackground();
 
                 } else {
                     return
@@ -273,18 +342,21 @@ App = {
 
 
 
+
             });
 
 
+
+
             //console.log("transaction receipt", transactionReceipt);
-            $('#modal-loading').attr('hidden', true);
+          //  $('#modal-loading').attr('hidden', true);
             //var button = document.getElementById('buttontest');
             //button.disabled = false;
             //temp = "http://localhost:3000/d/5_8OLaVGk/home?orgId=1&from="+startstamp+"&to="+endstamp
             //button.href = temp;
             //console.log(button)
-            $('#modal-time1').attr('hidden', false);
-            App.blurBackground();
+          //  $('#modal-time1').attr('hidden', false);
+          //  App.blurBackground();
 
 
        // console.log(marketInstance.Article.hashvalue);
@@ -295,6 +367,9 @@ App = {
             App.blurBackground();
 
         }
+
+
+
     },
 
     selectRange: async () => {
@@ -341,7 +416,10 @@ App = {
         // Retrieve the article placeholder
         const articlesRow = $('#articlesRow');
         const etherPrice = web3.utils.fromWei(price, "ether");
-        //console.log(id.words[0])
+        console.log(id.words)
+        console.log(price)
+        console.log(tag)
+        console.log(name)
         //test2=id.words[0]
         //test='start'+ id.words[0].toString();
         //test1='end'+id.words[0].toString();
@@ -350,7 +428,7 @@ App = {
         var articleTemplate = $('#articleTemplate');
         articleTemplate.find('.panel-title').text(" " + name);
         articleTemplate.find('.article-description').text(description);
-        //articleTemplate.find('.article-testid').text(id.words[0]);
+        articleTemplate.find('.article-tag').text(id.words[0]);
         //articleTemplate.find('.article-price').text(etherPrice);
         articleTemplate.find('.btn-buy').attr('data-id', id);
         articleTemplate.find('.btn-buy').attr('data-value', etherPrice);
