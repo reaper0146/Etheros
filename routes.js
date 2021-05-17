@@ -1,4 +1,4 @@
-const shortid = require('shortid')
+//const shortid = require('shortid')
 const path = require('path')
 const multer = require('multer')
 const helpers = require('./helper')
@@ -94,7 +94,7 @@ upload(req, res, function(err) {
         //console.log(typeof(accounts[0]))
 
 
-        console.log(wallet_addr)
+        console.log(req)
         //console.log(accounts[0])
         lms.sellArticle(name, description, _price, {from: wallet_addr})
         //let name = req.body.name
