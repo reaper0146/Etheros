@@ -47,83 +47,9 @@ App = {
         $.getJSON('Market.json', artifact => {
             App.contracts.Market = TruffleContract(artifact);
             App.contracts.Market.setProvider(window.web3.currentProvider);
-            App.listenToEvents();
+            //App.listenToEvents();
             return App.reloadArticles();
         });
-    },
-
-    // Listen to events raised from the contract
-    listenToEvents: async () => {
-        const marketInstance = await App.contracts.Market.deployed();
-        if(App.logSellArticleEventListener == null) {
-            App.logSellArticleEventListener = marketInstance.LogSellArticle({fromBlock: '0'}).on("data", event => {
-                    $('#' + event.id).remove();
-                    $('#events').append('<li class="list-group-item" id="' + event.id + '">' + event.returnValues._name + ' is for sale</li>');
-                    App.reloadArticles();
-                })
-                .on("error", error => {
-                    console.error(error);
-                });
-        }
-        if(App.logBuyArticleEventListener == null) {
-            App.logBuyArticleEventListener = marketInstance.LogBuyArticle({fromBlock: '0'}).on("data", event => {
-                    $('#' + event.id).remove();
-                    $('#events').append('<li class="list-group-item" id="' + event.id + '">' + event.returnValues._buyer + ' bought ' + event.returnValues._name + '</li>' );
-
-
-                   // $('#modal-bg2').modal('show');
-                    //$('#modal-purchase').attr("hidden",false);
-                    //$('#purchaselink').text(event.returnValues._hashvalue)
-
-
-
-                    App.reloadArticles();
-                })
-                .on("error", error => {
-                    console.error(error);
-                });
-        }
-
-        $('.btn-subscribe').hide();
-        $('.btn-unsubscribe').show();
-        $('.btn-show-events').show();
-    },
-
-  handleImageUpload: async(event) => {
-  const files = event.target.files
-  const formData = new FormData()
-  formData.append('myFile', files[0])
-
-  fetch('/saveImage', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data.path)
-  })
-  .catch(error => {
-    console.error(error)
-  })
-},
-
-    stopListeningToEvents: async () => {
-        if(App.logSellArticleEventListener != null) {
-            console.log("unsubscribe from sell events");
-            await App.logSellArticleEventListener.removeAllListeners();
-            App.logSellArticleEventListener = null;
-        }
-        if(App.logBuyArticleEventListener != null) {
-            console.log("unsubscribe from buy events");
-            await App.logBuyArticleEventListener.removeAllListeners();
-            App.logBuyArticleEventListener = null;
-        }
-
-        $('#events')[0].className = "list-group-collapse";
-
-        $('.btn-subscribe').show();
-        $('.btn-unsubscribe').hide();
-        $('.btn-show-events').hide();
     },
 
     sellArticle: async () => {
@@ -131,8 +57,8 @@ App = {
         //const articlePrice = isNaN(articlePriceValue) ? "0" : articlePriceValue.toString();
         const _name = $('#article_name').val();
         const _description = $('#article_description').val();
-        temp=0.01;
-        articlePrice=temp.toString()
+        temp = 1.0;
+        articlePrice = temp.toString()
         const _price = window.web3.utils.toWei(articlePrice, "ether");
         //const _starttime="From start";
         //const _endtime="Till now";
@@ -153,7 +79,6 @@ App = {
             const transactionReceipt = await marketInstance.sellArticle(
                 _name,
                 _description,
-                _tag,
                 _price,
                 {from: App.account, gas: 5000000}
             ).on("transactionHash", hash => {
@@ -206,16 +131,6 @@ App = {
 
       var articleTemplate = $('#modal-time');
       articleTemplate.find('.time-price').text(_price);
-      //articleTemplate.find('.article-description').text(description);
-      /*
-      var element1 = document.getElementById(start).value;
-      var element2 = document.getElementById(end).value;
-      document.getElementById(start).disabled = true;
-      document.getElementById(end).disabled = true;
-      time1= new Date(element1);
-      time2= new Date(element2);
-      time3= time2-time1;
-      temp= time3/10000000*/
     },
 
     ajaxPost: async()=>{

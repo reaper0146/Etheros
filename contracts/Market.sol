@@ -11,7 +11,6 @@ contract Market is Ownable {
         string name;
         string description;
         uint256 price;
-        string tag;
     }
 
     // State variables
@@ -22,23 +21,20 @@ contract Market is Ownable {
     string name;
     string description;
     uint256 price;
-    string tag;
 
     // Events
     event LogSellArticle (
         uint indexed _id,
         address indexed _seller,
         string _name,
-        uint256 _price,
-        string _tag);
+        uint256 _price);
 
     event LogBuyArticle (
         uint indexed _id,
         address indexed _seller,
         address indexed _buyer,
         string _name,
-        uint256 _price,
-        string _tag);
+        uint256 _price);
 
 
 
@@ -48,7 +44,7 @@ contract Market is Ownable {
     }
 
     // sell an article
-    function sellArticle(string memory _name, string memory _description, uint256 _price, string memory _tag) public {
+    function sellArticle(string memory _name, string memory _description, uint256 _price) public {
         // a new article
         articleCounter++;
 
@@ -59,13 +55,13 @@ contract Market is Ownable {
             address(0),
             _name,
             _description,
-            _price,
-            _tag
+            _price
+           // _tag
         );
 
 
         // trigger the event
-        emit LogSellArticle(articleCounter, msg.sender, _name, _price, _tag);
+        emit LogSellArticle(articleCounter, msg.sender, _name, _price);
         }
 
     // buy an article
@@ -102,7 +98,7 @@ contract Market is Ownable {
 
        // emit GiveHash()
         // trigger the event
-        emit LogBuyArticle(_id, article.seller, article.buyer, article.name, article.price, article.tag);
+        emit LogBuyArticle(_id, article.seller, article.buyer, article.name, article.price);
 
     }
 
