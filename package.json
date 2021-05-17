@@ -1,41 +1,36 @@
 {
-  "name": "market",
-  "version": "0.1.0",
+  "name": "Etheros_v3.0",
+  "version": "1.0.0",
   "description": "",
-  "main": "truffle.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "index.js",
   "scripts": {
-    "dev": "lite-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Soumya Pal",
-  "license": "MIT",
-  "devDependencies": {
-    "lite-server": "^2.3.0"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@truffle/contract": "^4.2.20",
-    "any-promise": "^1.3.0",
+    "@truffle/contract": "^4.0.31",
+    "@truffle/hdwallet-provider": "^1.0.0-web3one.5",
     "bindings": "^1.5.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "csurf": "^1.10.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
+    "ethereumjs-testrpc": "^3.9.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "express-flash": "^0.0.2",
     "express-layout": "^0.1.0",
     "express-session": "^1.17.0",
     "express-validator": "^6.3.1",
+    "formidable": "^1.00",
     "helmet": "^3.21.2",
-    "ipfs-http-client": "^42.0.0",
-    "ipfs-mini": "^1.1.5",
+    "mongodb": "^3.6.4",
     "multer": "^1.4.2",
-    "truffle-contract": "^4.0.31",
-    "truffle-hdwallet-provider": "^1.0.0-web3one.5",
-    "web3": "^1.0.0"
+    "nodemon": "^2.0.7",
+    "shortid": "^2.2.16",
+    "web3": "^0.20.1"
   }
 }

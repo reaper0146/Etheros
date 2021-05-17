@@ -1,9 +1,9 @@
-#!/usr/bin/python3
-
 from influxdb import InfluxDBClient
 import csv
 import json
 import sys
+from datetime import datetime
+
 
 def jsontocsv(input_json, output_path):
   flag=0;
@@ -27,24 +27,31 @@ def jsontocsv(input_json, output_path):
 
 
 client = InfluxDBClient("sensorweb.us", "8086", "test", "sensorweb", "shake", ssl=True)
-unit = "b8:27:eb:16:1b:d7"
+unit = "HA_test"
 
-stampIni=sys.argv[1]+'Z'
-stampEnd=sys.argv[2]+'Z'
+#stampIni=sys.argv[1]
 #stampEnd=sys.argv[2]
-#stampIni = "2020-08-14T17:22:15.000Z";
-#stampEnd = "2020-08-14T17:25:15.000Z";
-print(type(stampIni))
-print(stampEnd)
+#stampEnd=sys.argv[2] 1609025490000
+startStamp = int(sys.argv[1])/1000 #1609021890
+endStamp = int(sys.argv[2])/1000#1609025490
+start = str(datetime.fromtimestamp(startStamp)) + 'Z'
+end = str(datetime.fromtimestamp(endStamp)) + 'Z'
+stampIni = start.replace(" ", "T")
+stampEnd = end.replace(" ", "T")
+#print(type(stampIni))
+#print(stampIni)
+#print(stampEnd)
 query = 'SELECT "value" FROM Z WHERE ("location" = \''+unit+'\')  and time >= \''+stampIni+'\' and time <= \''+stampEnd+'\'   '
 
 result = client.query(query)
 
 
 data= list(result.get_points())
+#print(data[0:10])
 datajson=json.dumps(data)
 jsonobj = json.loads(datajson)
+print("Data fetched")
 #print(data)
 
 
-jsontocsv(jsonobj,'Data.csv')
+jsontocsv(jsonobj,'src/Datatemp.csv')
