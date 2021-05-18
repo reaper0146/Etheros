@@ -44,7 +44,7 @@ App = {
     },
 
     initContract: async () => {
-        $.getJSON('Market.json', artifact => {
+        $.getJSON('static/Market.json', artifact => {
             App.contracts.Market = TruffleContract(artifact);
             App.contracts.Market.setProvider(window.web3.currentProvider);
             //App.listenToEvents();
