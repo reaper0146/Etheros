@@ -8,6 +8,8 @@ App = {
     articletest: 0,
 
     init: async () => {
+        console.log("hi")
+        //App.reloadArticles();
         return App.initWeb3();
     },
 
@@ -24,7 +26,7 @@ App = {
                 console.error("Unable to retrieve your accounts! You have to approve this application on Metamask");
             }
         } else if(window.web3) {
-            window.web3 = new Web3(web3.currentProvider || "ws://localhost:8545");
+            window.web3 = new Web3(web3.currentProvider || "ws://localhost:7545");
             App.displayAccountInfo();
             return App.initContract();
         } else {
@@ -40,6 +42,7 @@ App = {
         const balance = await window.web3.eth.getBalance(App.account);
         $('#accountBalance').text(window.web3.utils.fromWei(balance, "ether") + " ETH");
         //$('#modal-purchase').attr("hidden",true);
+        //console.log('hi')
 
     },
 
@@ -331,7 +334,7 @@ App = {
         // Retrieve the article placeholder
         const articlesRow = $('#articlesRow');
         const etherPrice = web3.utils.fromWei(price, "ether");
-        console.log(id.words)
+        console.log('Hi')
         console.log(price)
         console.log(tag)
         console.log(name)
