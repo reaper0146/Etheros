@@ -1,0 +1,245 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="animation-area" id ="animation-area" style="filter: blur(0px); filter: brightness(1);">
+
+
+  <div class="banner-text">
+
+        <ul>
+
+          <title>Etheros Data Market</title>
+          <li>Home</li>
+          <li>Login</li>
+          <li>About</li>
+
+
+
+        </ul>
+
+        <ul2>
+
+          <p1>Connected Account:</p1>
+          <br/>
+          <p2 id="account" class="welcome pull-right"></p2>
+          <br/>
+          <p3 id="accountBalance" class="welcome pull-left"></p3>
+
+        </ul2>
+
+
+
+
+      </div>
+
+
+
+<ul class="box-area">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li>
+</ul>
+
+
+<account class="row">
+  <div class="col-lg-12">
+
+  </div>
+</account>
+
+
+
+
+
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-inner navbar-content-center text-center">
+      <p class="text-muted" credit><a href="https://sensorweb.engr.uga.edu/">SensorWeb Research Laboratory</a> - &copy; 2020 - <a href="https://sensorweb.engr.uga.edu/index.php/people/">William Rittmeyer</a> and <a href="https://sensorweb.engr.uga.edu/index.php/people/">Soumya Pal</a></p>
+    </div>
+  </nav>
+
+<div class="container">
+
+</div>
+
+
+
+
+<div class="col-1" id="article-list">
+  <div class="panel-title">
+  <!--button class="btn btn-info btn-lg pull-right myButton" data-toggle="modal" data-target="#sellArticle" onclick="App.blurBackground();" >Add a
+    Sensor</button-->
+
+  </div>
+<div class="panel-heading">
+  <br/><br/>
+<pre> Tag                      Description                                                                                        Seller</pre>
+<br/>
+</div>
+  <div id="articlesRow" class="row">
+  Loading Items for Sale...
+  <!-- ARTICLES LOAD HERE -->
+
+  </div>
+</div>
+
+
+<div class="panel-title">
+
+<div class ="table1-header">
+  Current Marketplace
+</div>
+
+
+
+ <div class="col-3" id="article-list2">
+
+</div>
+
+<div id="articleTemplate" style="display: none;">
+  <div class="row-lg-12">
+    <div class="panel panel-default panel-article">
+
+      <div class="panel-body">
+        <pre class="panel-title" style ="display: inline-block;"></pre>
+        <div class="article-description" style ="display: inline-block;"></div>
+        <div class="article-tag" style ="display: inline-block;"></div>
+        <!--div class="article-price" style ="display: inline-block;"></div-->
+        <div class="article-seller" style ="display: inline-block;"></div>
+        <div class="article-testid" id="testid" style ="display: inline-block;" hidden='true'></div>
+        <!--input class="article-testid" type="text" id="testid" style ="display: inline-block;" hidden='true'-->
+        <!--button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button>
+        <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="influxtest();">Test influx</button-->
+          <!--label for="start" style ="display: inline-block;">Start</label><br>
+          <input class="article-start" id='start' style ="display: inline-block;"><br>
+          <label for="end" style ="display: inline-block;">End</label><br>
+          <input class="article-end" type="text" id="end" style ="display: inline-block;" onchange="App.endTime();">
+          <br><br>
+          <div class="view-price" style ="display: inline-block;"></div>
+          <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button-->
+          <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy myButton1" onclick="App.selectRange(event); App.blurBackground(); return false;">Select range</button>
+          <!--form action="/inf-action" method='post'-->
+              <p><br></p>
+              <!--input type="submit" value="Submit"-->
+
+        <br/>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+<img src="static/ethereum1.png" class="ethereum-logo" />
+<img src= "static/flask.png"class="ipfs-logo"/>
+
+
+
+
+
+
+</div>
+</div>
+
+
+<div class="modal-loading" id ="modal-loading" hidden="true">
+  <h1> Please wait as the transaction is processed</h1>
+
+  <div class = "loading-animation">
+  <div class="sk-grid">
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+    <div class="sk-grid-cube"></div>
+  </div>
+
+</div>
+
+  <button type="button" class="modal-close" onclick="App.CloseWindow();">&#x274E;</button>
+</div>
+
+<div class="modal-submission" id ="modal-submission" hidden="true">
+  <div id= "modal-sale" >
+    <h1> Your file has successfully been put up for sale</h1>
+
+        <button type="button" class="modal-close" onclick="App.CloseSubmission();">&#x274E;</button>
+  </div>
+</div>
+
+<div class="modal-time" id ="modal-time" hidden="true">
+  <div id= "modal-select" >
+    <!--h3 id ="purchaselink"></h3-->
+    <!--form-->
+      <p><br></p></h3>
+      <h2>Select time range</h2><br>
+      <form id="timetest">
+      <label for="timeStart">Start Time</label><br>
+      <input class="trans-start timeText" name='timeStart' placeholder= 'Start Time' id='timeStart'><br><br>
+      <label for="timeEnd">End Time</label><br>
+      <input class="trans-end timeText" name='timeEnd' id="timeEnd" placeholder= 'End Time' onchange="App.endTime();"><br><br>
+      <button class="myButton" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button>
+    </form>
+
+      Price:
+      <div class="time-price" style ="display: inline-block;"></div></h3>
+      ETH
+      <br><br>
+      <!--input type="submit" value="Submit"-->
+      <!--button class="myButton" type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button-->
+      <!--a class="myButton" href="https://www.google.com" id="buttontest" disabled>View Data (Client side)</a-->
+<!--button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.testfn(); return false;">Buy</button-->
+        <!--button type="button" class="modal-close" onclick="App.CloseReceipt();">&times;</button-->
+      <!--/form-->
+
+      </div>
+
+<div>
+  <form action="/fileUpload" method="post" enctype="multipart/form-data">
+      <label for="file">Choose file to upload</label>
+      <input type="file" id="file" name="file" disabled>
+    </br>
+        <input type='submit' id="filepost" class="myButton">
+    </form>
+  <button type="button" class="modal-close" onclick="App.CloseTimeWindow();">&#x274E;</button>
+</div>
+
+<div class="modal-time1" id ="modal-time1" hidden="true">
+  <div id= "modal-select1" >
+    <h1> Thank you for your purchase!</h1>
+      <p><br></p>
+    <!--h3 id ="purchaselink"></h3-->
+    <form action="/sendTime" method="POST">
+      <input class="receiptStart timeText" name='receiptStart1' id='receiptStart1'><br>
+      <input class="receiptEnd timeText" name='receiptEnd1' id="receiptEnd1"><br><br>
+      <input type='submit' class="myButton">
+      <!--input type="submit" class="myButton" value="Link to view Data (Broken atm; server side)"-->
+    </form>
+    <!--a class="myButton" href="https://www.google.com" id="linktest">View Data (Grafana)</a-->
+        <!--button type="button" class="modal-close" onclick="App.CloseReceipt();">&times;</button-->
+      </div>
+  </div>
+
+  <div id="postResultDiv">
+    </div>
+
+<div class="modal-error" id ="modal-error" hidden="true">
+  <h1> Whoops! Looks like something went wrong.</h1>
+      <button type="button" class="modal-close" onclick="App.CloseError();">&times;</button>
+</div>
+
+{% endblock %}
