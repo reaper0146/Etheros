@@ -59,19 +59,32 @@ def sensorAdd():
     else:
         return render_template("sensorform.html") 
 
+@app.route("/sendTime", methods=['POST', 'GET'])
+def sendTime():
+    if request.method == 'POST':
+        print("HII")
+        #body = request.get_json()
+        timeStart = request.form#['timeStart']
+        print(timeStart)
+        timeEnd = request.values#['timeEnd']
+        print(timeEnd)
+        return redirect('/')
+
 @app.route("/fetchData", methods=['POST', 'GET'])
-def sensorAdd():
+def fetchData():
     if request.method == 'POST':
         #body = request.get_json()
-        timeStart = request.values['timeStart']
-        timeEnd = request.files['timeEnd']
+        #timeStart = request.values
+        #print(timeStart)
+        #timeEnd = request.values['timeE']
         uploaded_file = request.files['file']
         if uploaded_file and allowed_file(uploaded_file.filename):
             file_ext = os.path.splitext(uploaded_file.filename)[1]
             filesave = str('MachineLearning') + str(file_ext)
             uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filesave))
-        print(timeStart)
-        print(timeEnd)
+        
+       # print(timeEnd)
+    return redirect('/')
     
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

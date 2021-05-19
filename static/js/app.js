@@ -139,21 +139,21 @@ App = {
     ajaxPost: async()=>{
 
       // PREPARE FORM DATA
-      var formData = {
+      var form = {
         timeStart : $("#timeStart").val(),
         timeEnd :  $("#timeEnd").val()
       }
 
-      console.log(formData)
+      console.log(form)
 
       // DO POST
       $.ajax({
       type : "POST",
       contentType : "application/json",
       url : window.location + "sendTime",
-      data : JSON.stringify(formData),
+      data : JSON.stringify(form),
       dataType : 'json',
-      success : function(timetest) {console.log("Success!");
+      success : function(timetest) {console.log("Success! ", timetest);
       //  $("#postResultDiv").html("<p>" +
         //  "Post Successfully! <br>" +
           //"--->" + JSON.stringify(timetest)+ "</p>");
@@ -205,8 +205,8 @@ App = {
         const articlePrice = temp.toString()
         const _price = window.web3.utils.toWei(articlePrice, "ether")
 
-        var startstamp=App.toTimestamp(time1)
-        var endstamp=App.toTimestamp(time2)
+        //var startstamp=App.toTimestamp(time1)
+        //var endstamp=App.toTimestamp(time2)
 
         App.ajaxPost();
 

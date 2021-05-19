@@ -184,10 +184,9 @@
 <div class="modal-time" id ="modal-time" hidden="true">
   <div id= "modal-select" >
     <!--h3 id ="purchaselink"></h3-->
-    <!--form-->
       <p><br></p></h3>
       <h2>Select time range</h2><br>
-      <form id="timetest" method="POST" action="/fetchData">
+      <form id="timetest">
       <label for="timeStart">Start Time</label><br>
       <input class="trans-start timeText" name='timeStart' placeholder= 'Start Time' id='timeStart'><br><br>
       <label for="timeEnd">End Time</label><br>
@@ -199,17 +198,12 @@
       <div class="time-price" style ="display: inline-block;"></div></h3>
       ETH
       <br><br>
-      <!--input type="submit" value="Submit"-->
-      <!--button class="myButton" type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button-->
-      <!--a class="myButton" href="https://www.google.com" id="buttontest" disabled>View Data (Client side)</a-->
-<!--button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.testfn(); return false;">Buy</button-->
-        <!--button type="button" class="modal-close" onclick="App.CloseReceipt();">&times;</button-->
-      <!--/form-->
+
 
       </div>
 
 <div>
-  <form action="/fileUpload" method="post" enctype="multipart/form-data">
+  <form action="/fetchData" method="post" enctype="multipart/form-data">
       <label for="file">Choose file to upload</label>
       <input type="file" id="file" name="file" disabled>
     </br>
