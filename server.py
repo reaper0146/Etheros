@@ -81,8 +81,8 @@ def fetchData():
             file_ext = os.path.splitext(uploaded_file.filename)[1]
             filesave = str('MachineLearning') + str(file_ext)
             uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filesave))
-        print(timeStart)
-        print(timeEnd)
+        #print(timeStart)
+        #print(timeEnd)
     return redirect('/')
 
     
