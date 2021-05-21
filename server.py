@@ -81,9 +81,16 @@ def fetchData():
             file_ext = os.path.splitext(uploaded_file.filename)[1]
             filesave = str('MachineLearning') + str(file_ext)
             uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filesave))
+<<<<<<< HEAD
+        print(timeStart)
+        print(timeEnd)
+        return redirect('/')
+
+=======
         
        # print(timeEnd)
     return redirect('/')
+>>>>>>> 31adbdf3385c1aa903cbac88202676bfd90a7f88
     
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
