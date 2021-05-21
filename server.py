@@ -19,7 +19,6 @@ with open("static/Market.json", 'r') as f:
 
 w3.eth.defaultAccount = w3.eth.accounts[1]
 
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
