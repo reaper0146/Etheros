@@ -1,54 +1,70 @@
-import numpy as np
-from scipy.signal import butter, filtfilt
-from influxdb import InfluxDBClient
-import operator
-import pandas as pd
+#!/usr/bin/env python3
+# coding: utf-8
+
 import sys
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+#import datetime
+from datetime import datetime
+from datetime import timedelta
+from influxdb import InfluxDBClient
+from influxdb.exceptions import InfluxDBClientError
+import numpy
+import time
+import random
+import operator
+import sys
+import numpy as np
+from numpy import array
 
-def butter_lowpass_filter(data, cutoff, fs, order):
-    normal_cutoff = cutoff / nyq
-    # Get the filter coefficients 
-    b, a = butter(order, normal_cutoff, btype='low', analog=False)
-    y = filtfilt(b, a, data)
-    return y
+#start_time = time.time()
 
-#client = InfluxDBClient("sensorweb.us", "8086", "test", "sensorweb", "shake", ssl=True)
-#unit = "b8:27:eb:16:1b:d7"
+starttime = datetime(2020,7, 17,8,5,15)
+endtime = datetime(2020, 7, 17,20,15,15)
 
 
-#stampIni = "2020-08-14T17:22:15.000Z";
-#stampEnd = "2020-08-14T17:25:15.000Z";
+client = InfluxDBClient("3.136.84.223", "8086", "test", "sensorweb", "testdb")
 
-#query = 'SELECT "value" FROM Z WHERE ("location" = \''+unit+'\')  and time >= \''+stampIni+'\' and time <= \''+stampEnd+'\'   '
+query = 'show series'
+result = client.query(query)
 
-#result = client.query(query)
-#points = list(result.get_points())
+points = list(result.get_points())
+#value =  np.append(value,np.array(list(map(operator.itemgetter('value'), points))))
+#print(points)
+#print(len(points[1]))
 
-#values =  map(operator.itemgetter('value'), points)
-#times  =  map(operator.itemgetter('time'),  points)
 
-#datat = list(values)
-datat = pd.read_csv('./src/Datatemp.csv')
-# Filter requirements.
-T = 5.0         # Sample Period
-t = 5.0
-fs = 30.0       # sample rate, Hz
-cutoff = 2      # desired cutoff frequency of the filter, Hz ,      slightly higher than actual 1.2 Hz
-nyq = 0.5 * fs  # Nyquist Frequency
-order = 2       # sin wave can be approx represented as quadratic
-n = int(T * fs) # total number of samples
+#utc_time = starttime.replace(tzinfo = timezone.utc)
+timestamp = starttime.timestamp()*1000
+start_str = str(int((timestamp)*1000000))
 
-data = datat['value'] #[0:1000]
-#print(data)
+#utc_time = endtime.replace(tzinfo = timezone.utc)
+timestamp = endtime.timestamp()*1000
+end_str=str(int((timestamp)*1000000))
 
-# Filter the data, and plot both the original and filtered signals.
-y = butter_lowpass_filter(data, cutoff, fs, order)
-#figure(1)
-plt.plot(data, color='blue')
-#plt.xlim([0,5000])
-#figure(2)
-plt.plot(y, color='red')
-plt.savefig(sys.stdout.buffer)
+tempstart=starttime
+tempend=starttime + timedelta(minutes=5)
+unit='Unit4'
+while tempend<endtime:
+    timestamp = tempend.timestamp()*1000
+    str_end=str(int((timestamp)*1000000))
+    timestamp = tempstart.timestamp()*1000
+    str_start=str(int((timestamp)*1000000))
+    query = 'SELECT "value" FROM Z WHERE ("location" = \''+unit+'\')  and time >= \''+str_start+'\' and time <= \''+str_end+'\'   '
+    
+    result = client.query(query)
+    points = list(result.get_points())
+    
+    values =  map(operator.itemgetter('value'), points)
+    times  =  map(operator.itemgetter('time'),  points)
+    
+    value = list(values)
+    time1 = list(times)
+    print(time1)
+    tempstart=tempend
+    tempend=tempstart+timedelta(minutes=5)
+
+#print(starttime)
+#difftime=starttime + timedelta(minutes=5)
+#print(difftime)
+
+#print(start_str)
+#print(end_str)

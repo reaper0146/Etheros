@@ -184,14 +184,14 @@
 <div class="modal-time" id ="modal-time" hidden="true">
   <div id= "modal-select" >
     <!--h3 id ="purchaselink"></h3-->
-      <p><br></p></h3>
-      <h2>Select time range</h2><br>
-      <form id="timetest">
-      <label for="timeStart">Start Time</label><br>
-      <input class="trans-start timeText" name='timeStart' placeholder= 'Start Time' id='timeStart'><br><br>
-      <label for="timeEnd">End Time</label><br>
-      <input class="trans-end timeText" name='timeEnd' id="timeEnd" placeholder= 'End Time' onchange="App.endTime();"><br><br>
-      <button class="myButton" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button>
+    <p><br></p></h3>
+    <h2>Select time range</h2><br>
+    <form class = 'modal-time-range' id="timetest" method='POST' role='form'>
+        <label for="timeStart">Start Time</label><br>
+        <input type='text' class="trans-start timeText" name='timeStart' placeholder= 'Start Time' id='timeStart' autofocus><br><br>
+        <label for="timeEnd">End Time</label><br>
+        <input type='text' class="trans-end timeText" name='timeEnd' id="timeEnd" placeholder= 'End Time' onchange="App.endTime();" autofocus><br><br>
+        <button class="myButton" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy" onclick="App.buyArticle(event); return false;">Buy</button>
     </form>
 
       Price:
