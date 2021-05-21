@@ -150,10 +150,12 @@ App = {
       $.ajax({
       type : "POST",
       contentType : "application/json",
-      url : window.location + "sendTime",
-      data : JSON.stringify(form),
-      dataType : 'json',
-      success : function(timetest) {console.log("Success! ", timetest);
+      url : '/sendTime', //window.location + "sendTime",
+      data : JSON.stringify(form), //$('form').serialize(), // JSON.stringify(form),
+      contentType: 'application/json;charset=UTF-8',
+
+      //dataType : 'json',
+      success : function(response) {console.log("Success! ", response);
       //  $("#postResultDiv").html("<p>" +
         //  "Post Successfully! <br>" +
           //"--->" + JSON.stringify(timetest)+ "</p>");

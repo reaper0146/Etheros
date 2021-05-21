@@ -63,9 +63,9 @@ def sendTime():
     if request.method == 'POST':
         print("HII")
         #body = request.get_json()
-        timeStart = request.form#['timeStart']
+        timeStart = request.json['timeStart']
         print(timeStart)
-        timeEnd = request.values#['timeEnd']
+        timeEnd = request.json['timeEnd']
         print(timeEnd)
         return redirect('/')
 
@@ -81,7 +81,11 @@ def fetchData():
             file_ext = os.path.splitext(uploaded_file.filename)[1]
             filesave = str('MachineLearning') + str(file_ext)
             uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filesave))
+<<<<<<< HEAD
         #print(timeStart)
+=======
+       # print(timeStart)
+>>>>>>> 16be96bc628a9e52e141eca2d46f7af9da4e8264
         #print(timeEnd)
     return redirect('/')
 
