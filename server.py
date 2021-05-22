@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect
-import os
+import os, datetime, time
 import pandas as pd
 from web3 import Web3
-import json
+import json, sys
+
 
 app = Flask(__name__, template_folder='templates')
 UPLOAD_FOLDER = os.path.abspath(os.path.join(os.getcwd(), "static"))
@@ -67,27 +68,33 @@ def sendTime():
         print(timeStart)
         timeEnd = request.json['timeEnd']
         print(timeEnd)
+        element = datetime.datetime.strptime(timeStart,"%m/%d/%Y %H:%M:%S")
+        timestamp1 = int(datetime.datetime.timestamp(element))
+        element = datetime.datetime.strptime(timeEnd,"%m/%d/%Y %H:%M:%S")
+        timestamp2 = int(datetime.datetime.timestamp(element))
+        print(timestamp1)
+        print(timestamp2)
+        #sys.argv = ['influxdata.py',timestamp1, timestamp2]
+        #execfile('influxdata.py')
+        temp = 'python influxdata.py ' + str(timestamp1) +" " + str(timestamp2)
+        print(temp)
+        os.system(temp)
+        os.system('rm static/MachineLearning.py')
+
         return redirect('/')
 
 @app.route("/fetchData", methods=['POST', 'GET'])
 def fetchData():
     if request.method == 'POST':
-        #body = request.get_json()
-        #timeStart = request.values
-        #print(timeStart)
-        #timeEnd = request.values['timeE']
+
+
         uploaded_file = request.files['file']
         if uploaded_file and allowed_file(uploaded_file.filename):
             file_ext = os.path.splitext(uploaded_file.filename)[1]
             filesave = str('MachineLearning') + str(file_ext)
             uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filesave))
-<<<<<<< HEAD
-        #print(timeStart)
-=======
-       # print(timeStart)
->>>>>>> 16be96bc628a9e52e141eca2d46f7af9da4e8264
-        #print(timeEnd)
-    return redirect('/')
+
+    return redirect('/sensorAdd')
 
     
 if __name__ == "__main__":

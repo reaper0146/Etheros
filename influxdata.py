@@ -32,15 +32,15 @@ unit = "HA_test"
 #stampIni=sys.argv[1]
 #stampEnd=sys.argv[2]
 #stampEnd=sys.argv[2] 1609025490000
-startStamp = int(sys.argv[1])/1000 #1609021890
-endStamp = int(sys.argv[2])/1000#1609025490
+startStamp = int(sys.argv[1])#/1000 #1609021890
+endStamp = int(sys.argv[2])#/1000#1609025490
 start = str(datetime.fromtimestamp(startStamp)) + 'Z'
 end = str(datetime.fromtimestamp(endStamp)) + 'Z'
 stampIni = start.replace(" ", "T")
 stampEnd = end.replace(" ", "T")
 #print(type(stampIni))
-#print(stampIni)
-#print(stampEnd)
+print(stampIni)
+print(stampEnd)
 query = 'SELECT "value" FROM Z WHERE ("location" = \''+unit+'\')  and time >= \''+stampIni+'\' and time <= \''+stampEnd+'\'   '
 
 result = client.query(query)
@@ -54,4 +54,4 @@ print("Data fetched")
 #print(data)
 
 
-jsontocsv(jsonobj,'src/Datatemp.csv')
+jsontocsv(jsonobj,'static/Datatemp.csv')
