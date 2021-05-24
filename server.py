@@ -10,7 +10,9 @@ UPLOAD_FOLDER = os.path.abspath(os.path.join(os.getcwd(), "static"))
 ALLOWED_EXTENSIONS = set(['py'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:7545'))
+#w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:7545'))
+w3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io'))
+#w3 = Web3(Web3.HTTPProvider('http://host.docker.internal:7545'))
 
 with open("static/Market.json", 'r') as f:
      datastore = json.load(f)
