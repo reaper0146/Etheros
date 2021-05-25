@@ -24,7 +24,7 @@ App = {
                 console.error("Unable to retrieve your accounts! You have to approve this application on Metamask");
             }
         } else if(window.web3) {
-            window.web3 = new Web3(web3.currentProvider || "ws://localhost:8545");
+            window.web3 = new Web3(web3.currentProvider || "https://ropsten.infura.io/v3/6cc1f696559744a1834146d327efbc88" || "ws://localhost:8545");
             App.displayAccountInfo();
             return App.initContract();
         } else {
