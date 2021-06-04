@@ -8,8 +8,8 @@ App = {
     articletest: 0,
 
     init: async () => {
-        console.log("hi")
-        //App.reloadArticles();
+        //console.log("hi")
+        App.reloadArticles();
         return App.initWeb3();
     },
 

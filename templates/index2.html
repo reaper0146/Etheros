@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="animation">
+  <h1>Etheros Data Market</h1>
+  <div class="test"><p1>Connected Account:</p1>
+    <br/>
+    <p2 id="account" class="welcome pull-right"></p2>
+    <br/>
+    <p3 id="accountBalance" class="welcome pull-left"></p3></div>
+  <div class="container">
+    <div class="row">
+    <div class="col-md-6">Col1</div>
+    <div class="col-md-6">Col 2</div>
+  </div>
+
+  <div id="articlesRow" class="row">
+    Loading Items for Sale...
+    <!-- ARTICLES LOAD HERE -->
+  
+    </div>
+
+  <div class="container-sm" id="articleTemplate">100% wide until small breakpoint
+    <!--div id="articleTemplate" style="display: none;"-->
+        <div class="panel panel-default panel-article">
+    
+          <div class="panel-body">
+            <pre class="panel-title" style ="display: inline-block;"></pre>
+            <div class="article-description" style ="display: inline-block;"></div>
+            <div class="article-tag" style ="display: inline-block;"></div>
+            <!--div class="article-price" style ="display: inline-block;"></div-->
+            <div class="article-seller" style ="display: inline-block;"></div>
+            <div class="article-testid" id="testid" style ="display: inline-block;" hidden='true'></div>
+            <button type="button" style ="display: inline-block;" class="btn btn-primary btn-success btn-buy myButton1" onclick="App.selectRange(event); App.blurBackground(); return false;">Select range</button>
+              <!--form action="/inf-action" method='post'-->
+                  <p><br></p>
+                  <!--input type="submit" value="Submit"-->
+    
+            <br/>
+        </div>  
+  </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark fixed-bottom text-center">
+      <p class="text-muted" credit><a href="https://sensorweb.engr.uga.edu/">SensorWeb Research Laboratory</a> - &copy; 2020 - <a href="https://sensorweb.engr.uga.edu/index.php/people/">William Rittmeyer</a> and <a href="https://sensorweb.engr.uga.edu/index.php/people/">Soumya Pal</a>
+      <img src="static/ethereum1.png" class="img-thumbnail ethereum-logo" style="width: 45px; height: 45px;"/>
+      <img src= "static/flask.png"class=" img-thumbnail ipfs-logo" style="width: 45px; height: 45px;"/>
+    </p>
+  </nav>
+  </div>
+
+
+
+{% endblock %}
