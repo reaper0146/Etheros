@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import os, datetime, time
 import pandas as pd
-from web3 import Web3
+#from web3 import Web3
 import json, sys
 
 
@@ -11,16 +11,16 @@ ALLOWED_EXTENSIONS = set(['py'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:7545'))
-w3 = Web3(Web3.HTTPProvider('https://ropsten.infura.io/v3/6cc1f696559744a1834146d327efbc88'))
+#w3 = Web3(Web3.HTTPProvider('https://ropsten.infura.io/v3/6cc1f696559744a1834146d327efbc88'))
 #w3 = Web3(Web3.HTTPProvider('http://host.docker.internal:7545'))
 
-with open("static/Market.json", 'r') as f:
-     datastore = json.load(f)
-     abi = datastore["abi"]
-     #print(abi.at('address'))
-     contract_address = Web3.toChecksumAddress('0x8e11707e937487bf6f9b70cca9917bc7796bafbb') #datastore["contract_address"]
+#with open("static/Market.json", 'r') as f:
+#     datastore = json.load(f)
+#     abi = datastore["abi"]
+ #    #print(abi.at('address'))
+  #   contract_address = Web3.toChecksumAddress('0x8e11707e937487bf6f9b70cca9917bc7796bafbb') #datastore["contract_address"]
 
-w3.eth.defaultAccount = '0xe8d4Ff65d67053b3AF46c3342cb8F7BCfd00a7cd' # w3.eth.accounts[1]
+#w3.eth.defaultAccount = '0xe8d4Ff65d67053b3AF46c3342cb8F7BCfd00a7cd' # w3.eth.accounts[1]
 
 def allowed_file(filename):
     return '.' in filename and \
